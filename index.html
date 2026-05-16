@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sti Soluciones – Seguridad, Electricidad e Informática</title>
+<meta name="description" content="Instalación de alarmas y cámaras, electricidad domiciliaria, informática y reparación de impresoras en Río Cuarto, Córdoba.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0a0f1e;
+    --navy2: #111827;
+    --blue: #1d4ed8;
+    --blue-light: #3b82f6;
+    --cyan: #06b6d4;
+    --cyan-dim: rgba(6,182,212,0.12);
+    --white: #f8fafc;
+    --gray: #94a3b8;
+    --gray2: #cbd5e1;
+    --card-bg: #141c2e;
+    --card-border: rgba(99,179,237,0.15);
+    --accent: #f59e0b;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.1rem 5%;
+    background: rgba(10,15,30,0.85);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(99,179,237,0.1);
+  }
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 0.08em;
+    color: var(--white);
+    text-decoration: none;
+  }
+  .logo span { color: var(--cyan); }
+  nav ul { display: flex; gap: 2rem; list-style: none; }
+  nav ul a {
+    text-decoration: none; color: var(--gray2); font-size: 0.9rem; font-weight: 500;
+    transition: color 0.2s;
+  }
+  nav ul a:hover { color: var(--cyan); }
+  .nav-cta {
+    background: var(--blue); color: #fff !important; padding: 0.45rem 1.2rem;
+    border-radius: 6px; transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--blue-light) !important; color: #fff !important; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; }
+  #mobile-menu { display: none; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 8rem 5% 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 70% 40%, rgba(29,78,216,0.22) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 40% at 20% 80%, rgba(6,182,212,0.1) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .grid-bg {
+    position: absolute; inset: 0; pointer-events: none; opacity: 0.04;
+    background-image: linear-gradient(rgba(148,163,184,1) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(148,163,184,1) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-content { position: relative; max-width: 700px; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--cyan-dim); border: 1px solid rgba(6,182,212,0.3);
+    border-radius: 50px; padding: 0.35rem 1rem; font-size: 0.8rem;
+    color: var(--cyan); font-weight: 500; margin-bottom: 1.5rem;
+    letter-spacing: 0.05em;
+  }
+  .hero-badge::before { content: '●'; font-size: 0.5rem; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.5rem, 8vw, 6.5rem);
+    line-height: 0.95;
+    letter-spacing: 0.02em;
+    margin-bottom: 1.5rem;
+    color: var(--white);
+  }
+  h1 .accent { color: var(--cyan); }
+  .hero-sub {
+    font-size: 1.15rem; color: var(--gray); max-width: 520px;
+    margin-bottom: 2.5rem; font-weight: 300;
+  }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--blue); color: #fff; padding: 0.85rem 2rem;
+    border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.95rem;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+  .btn-primary:hover { background: var(--blue-light); transform: translateY(-1px); }
+  .btn-secondary {
+    border: 1.5px solid rgba(148,163,184,0.35); color: var(--gray2);
+    padding: 0.85rem 2rem; border-radius: 8px; text-decoration: none;
+    font-weight: 500; font-size: 0.95rem; transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--cyan); color: var(--cyan); }
+
+  .hero-visual {
+    position: absolute; right: 3%; top: 50%; transform: translateY(-50%);
+    width: min(500px, 45vw);
+    opacity: 0.85;
+  }
+
+  /* floating stats */
+  .stats {
+    display: flex; gap: 2rem; margin-top: 3.5rem; flex-wrap: wrap;
+  }
+  .stat { }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem;
+    color: var(--white); letter-spacing: 0.05em; line-height: 1;
+  }
+  .stat-num span { color: var(--cyan); }
+  .stat-label { font-size: 0.8rem; color: var(--gray); font-weight: 400; }
+
+  /* ── SECTION COMMONS ── */
+  section { padding: 6rem 5%; }
+  .section-tag {
+    display: inline-block; font-size: 0.75rem; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--cyan); font-weight: 600;
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    letter-spacing: 0.04em; line-height: 1; margin-bottom: 1rem;
+  }
+  .section-sub { color: var(--gray); max-width: 500px; font-weight: 300; }
+
+  /* ── SERVICIOS ── */
+  #servicios { background: var(--navy2); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem; margin-top: 3rem;
+  }
+  .service-card {
+    background: var(--card-bg); border: 1px solid var(--card-border);
+    border-radius: 16px; padding: 2rem;
+    transition: border-color 0.25s, transform 0.2s;
+    position: relative; overflow: hidden;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--blue), var(--cyan));
+    opacity: 0; transition: opacity 0.25s;
+  }
+  .service-card:hover { border-color: rgba(6,182,212,0.4); transform: translateY(-4px); }
+  .service-card:hover::before { opacity: 1; }
+  .service-icon {
+    width: 54px; height: 54px; border-radius: 12px;
+    background: var(--cyan-dim); border: 1px solid rgba(6,182,212,0.25);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.25rem;
+    font-size: 1.6rem;
+  }
+  .service-card h3 {
+    font-size: 1.15rem; font-weight: 600; margin-bottom: 0.6rem; color: var(--white);
+  }
+  .service-card p { color: var(--gray); font-size: 0.9rem; font-weight: 300; line-height: 1.65; }
+  .service-list {
+    list-style: none; margin-top: 1rem;
+  }
+  .service-list li {
+    font-size: 0.85rem; color: var(--gray2); padding: 0.25rem 0;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .service-list li::before { content: '→'; color: var(--cyan); font-size: 0.75rem; }
+
+  /* ── SEGURIDAD HERO CARD ── */
+  .service-card.featured {
+    background: linear-gradient(135deg, #0d1f3c 0%, #0f2444 100%);
+    border-color: rgba(29,78,216,0.4);
+    grid-column: span 2;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center;
+  }
+  @media(max-width:700px) { .service-card.featured { grid-column: span 1; grid-template-columns: 1fr; } }
+
+  /* ── PROCESO ── */
+  .proceso-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0; margin-top: 3rem; position: relative;
+  }
+  .proceso-step {
+    padding: 2rem 1.5rem; position: relative;
+    border-right: 1px solid rgba(99,179,237,0.1);
+    text-align: center;
+  }
+  .proceso-step:last-child { border-right: none; }
+  .step-num {
+    font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem;
+    color: rgba(6,182,212,0.15); line-height: 1; margin-bottom: 0.5rem;
+  }
+  .proceso-step h4 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+  .proceso-step p { font-size: 0.85rem; color: var(--gray); }
+
+  /* ── POR QUÉ ── */
+  #porque { background: var(--navy2); }
+  .porq-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+    align-items: center; margin-top: 3rem;
+  }
+  @media(max-width: 768px) { .porq-grid { grid-template-columns: 1fr; } }
+  .porq-items { display: flex; flex-direction: column; gap: 1.5rem; }
+  .porq-item {
+    display: flex; gap: 1rem; align-items: flex-start;
+  }
+  .porq-icon {
+    width: 40px; height: 40px; flex-shrink: 0;
+    border-radius: 10px; background: var(--cyan-dim);
+    display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
+  }
+  .porq-item h4 { font-size: 1rem; font-weight: 600; margin-bottom: 0.2rem; }
+  .porq-item p { font-size: 0.88rem; color: var(--gray); }
+  .porq-visual {
+    background: var(--card-bg); border: 1px solid var(--card-border);
+    border-radius: 20px; padding: 2.5rem; text-align: center;
+  }
+  .big-num {
+    font-family: 'Bebas Neue', sans-serif; font-size: 5rem; color: var(--cyan);
+    line-height: 1;
+  }
+
+  /* ── CONTACTO ── */
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+    margin-top: 3rem; align-items: start;
+  }
+  @media(max-width: 768px) { .contact-grid { grid-template-columns: 1fr; } }
+  .contact-info { display: flex; flex-direction: column; gap: 1.2rem; }
+  .contact-item {
+    display: flex; align-items: flex-start; gap: 1rem;
+    background: var(--card-bg); border: 1px solid var(--card-border);
+    border-radius: 12px; padding: 1.2rem 1.5rem;
+  }
+  .contact-item-icon { font-size: 1.4rem; flex-shrink: 0; }
+  .contact-item strong { display: block; font-size: 0.85rem; color: var(--gray); margin-bottom: 0.2rem; }
+  .contact-item a { color: var(--white); text-decoration: none; font-weight: 500; }
+  .contact-item a:hover { color: var(--cyan); }
+  form {
+    background: var(--card-bg); border: 1px solid var(--card-border);
+    border-radius: 16px; padding: 2rem; display: flex; flex-direction: column; gap: 1rem;
+  }
+  form input, form textarea, form select {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(148,163,184,0.2);
+    border-radius: 8px; padding: 0.8rem 1rem; color: var(--white);
+    font-family: 'DM Sans', sans-serif; font-size: 0.92rem; width: 100%;
+    transition: border-color 0.2s;
+    appearance: none; -webkit-appearance: none;
+  }
+  form input::placeholder, form textarea::placeholder { color: var(--gray); }
+  form select { color: var(--gray); cursor: pointer; }
+  form select option { background: var(--navy2); color: var(--white); }
+  form input:focus, form textarea:focus, form select:focus {
+    outline: none; border-color: var(--cyan);
+  }
+  form textarea { resize: vertical; min-height: 100px; }
+  .btn-form {
+    background: var(--blue); color: #fff; border: none; padding: 0.9rem;
+    border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer;
+    transition: background 0.2s; font-family: 'DM Sans', sans-serif;
+  }
+  .btn-form:hover { background: var(--blue-light); }
+
+  /* WhatsApp float */
+  .wa-float {
+    position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 200;
+    background: #25d366; color: #fff; width: 60px; height: 60px;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem; text-decoration: none; box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+    transition: transform 0.2s;
+  }
+  .wa-float:hover { transform: scale(1.1); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #050810; border-top: 1px solid rgba(99,179,237,0.1);
+    padding: 3rem 5% 2rem;
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+  }
+  footer p { color: var(--gray); font-size: 0.85rem; }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { color: var(--gray); font-size: 0.85rem; text-decoration: none; }
+  .footer-links a:hover { color: var(--cyan); }
+
+  /* ── RESPONSIVE NAV ── */
+  @media(max-width: 700px) {
+    nav ul { display: none; }
+    .hamburger { display: flex; }
+    #mobile-menu {
+      position: fixed; top: 68px; left: 0; right: 0; z-index: 99;
+      background: rgba(10,15,30,0.97); border-bottom: 1px solid rgba(99,179,237,0.1);
+      padding: 1.5rem 5%; flex-direction: column; gap: 1.2rem;
+    }
+    #mobile-menu.open { display: flex; }
+    #mobile-menu a { color: var(--gray2); text-decoration: none; font-size: 1.05rem; }
+  }
+
+  /* animate on scroll */
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="#"><span>STI</span> SOLUCIONES</a>
+  <ul>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#proceso">Proceso</a></li>
+    <li><a href="#porque">Por qué elegirnos</a></li>
+    <li><a href="#contacto" class="nav-cta">Contacto</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMenu()" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div id="mobile-menu">
+  <a href="#servicios" onclick="toggleMenu()">Servicios</a>
+  <a href="#proceso" onclick="toggleMenu()">Proceso</a>
+  <a href="#porque" onclick="toggleMenu()">Por qué elegirnos</a>
+  <a href="#contacto" onclick="toggleMenu()">Contacto</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="grid-bg"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Río Cuarto, Córdoba · Servicio local</div>
+    <h1>SEGURIDAD,<br>ELECTRICIDAD<br>E <span class="accent">INFORMÁTICA</span></h1>
+    <p class="hero-sub">Instalamos sistemas de alarmas y cámaras, realizamos instalaciones eléctricas domiciliarias y brindamos soporte informático y reparación de impresoras.</p>
+    <div class="hero-btns">
+      <a href="#servicios" class="btn-primary">Ver servicios →</a>
+      <a href="#contacto" class="btn-secondary">Solicitar presupuesto</a>
+    </div>
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-num">+5<span>años</span></div>
+        <div class="stat-label">de experiencia</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">+200<span></span></div>
+        <div class="stat-label">clientes satisfechos</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">24<span>/7</span></div>
+        <div class="stat-label">soporte disponible</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SVG decorativo seguridad -->
+  <div class="hero-visual" aria-hidden="true">
+    <svg viewBox="0 0 460 460" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="230" cy="230" r="200" stroke="rgba(6,182,212,0.08)" stroke-width="1"/>
+      <circle cx="230" cy="230" r="160" stroke="rgba(6,182,212,0.07)" stroke-width="1"/>
+      <circle cx="230" cy="230" r="120" stroke="rgba(29,78,216,0.15)" stroke-width="1"/>
+      <!-- Shield -->
+      <path d="M230 80 L310 115 L310 215 C310 265 270 305 230 320 C190 305 150 265 150 215 L150 115 Z"
+        fill="rgba(29,78,216,0.12)" stroke="rgba(6,182,212,0.5)" stroke-width="1.5"/>
+      <path d="M230 105 L295 134 L295 218 C295 258 262 290 230 303 C198 290 165 258 165 218 L165 134 Z"
+        fill="rgba(6,182,212,0.07)" stroke="rgba(6,182,212,0.25)" stroke-width="1"/>
+      <!-- Check -->
+      <path d="M205 200 L222 218 L258 178" stroke="rgba(6,182,212,0.9)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- Cámara -->
+      <rect x="60" y="180" width="60" height="40" rx="8" fill="rgba(29,78,216,0.2)" stroke="rgba(6,182,212,0.4)" stroke-width="1"/>
+      <circle cx="90" cy="200" r="12" fill="rgba(6,182,212,0.15)" stroke="rgba(6,182,212,0.5)" stroke-width="1"/>
+      <circle cx="90" cy="200" r="5" fill="rgba(6,182,212,0.5)"/>
+      <line x1="120" y1="200" x2="150" y2="200" stroke="rgba(6,182,212,0.3)" stroke-width="1" stroke-dasharray="4 3"/>
+      <!-- WiFi signal -->
+      <path d="M340 160 Q360 145 380 160" stroke="rgba(6,182,212,0.4)" stroke-width="2" stroke-linecap="round" fill="none"/>
+      <path d="M333 152 Q360 130 387 152" stroke="rgba(6,182,212,0.25)" stroke-width="2" stroke-linecap="round" fill="none"/>
+      <circle cx="360" cy="168" r="4" fill="rgba(6,182,212,0.6)"/>
+      <!-- Dots -->
+      <circle cx="165" cy="330" r="4" fill="rgba(6,182,212,0.5)"/>
+      <circle cx="295" cy="330" r="4" fill="rgba(29,78,216,0.5)"/>
+      <circle cx="350" cy="270" r="3" fill="rgba(6,182,212,0.35)"/>
+    </svg>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+  <div class="reveal">
+    <span class="section-tag">Lo que hacemos</span>
+    <h2 class="section-title">NUESTROS SERVICIOS</h2>
+    <p class="section-sub">Soluciones completas para el hogar y la empresa, con equipos de calidad y garantía.</p>
+  </div>
+
+  <div class="services-grid">
+
+    <!-- SEGURIDAD FEATURED -->
+    <div class="service-card featured reveal">
+      <div>
+        <div class="service-icon">🔒</div>
+        <h3>Alarmas y Cámaras de Seguridad</h3>
+        <p>Instalamos sistemas integrales de seguridad para tu hogar o negocio. Equipos de última generación con monitoreo remoto desde tu celular.</p>
+        <ul class="service-list">
+          <li>Cámaras IP HD y 4K interior/exterior</li>
+          <li>Sistemas de alarma con sensores</li>
+          <li>DVR/NVR y almacenamiento en nube</li>
+          <li>Acceso remoto desde smartphone</li>
+          <li>Control de acceso y porteros eléctricos</li>
+          <li>Mantenimiento y soporte técnico</li>
+        </ul>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:1rem;">
+        <div style="background:rgba(6,182,212,0.07);border:1px solid rgba(6,182,212,0.2);border-radius:12px;padding:1.2rem;text-align:center;">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--cyan);line-height:1;">HD / 4K</div>
+          <div style="font-size:0.8rem;color:var(--gray);">resolución de imagen</div>
+        </div>
+        <div style="background:rgba(29,78,216,0.1);border:1px solid rgba(29,78,216,0.25);border-radius:12px;padding:1.2rem;text-align:center;">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:#93c5fd;line-height:1;">24/7</div>
+          <div style="font-size:0.8rem;color:var(--gray);">monitoreo continuo</div>
+        </div>
+        <a href="#contacto" class="btn-primary" style="text-align:center;justify-content:center;">Pedir presupuesto →</a>
+      </div>
+    </div>
+
+    <!-- ELECTRICIDAD -->
+    <div class="service-card reveal">
+      <div class="service-icon">⚡</div>
+      <h3>Electricidad Domiciliaria</h3>
+      <p>Instalaciones eléctricas residenciales y comerciales, cumpliendo las normativas vigentes para tu total seguridad.</p>
+      <ul class="service-list">
+        <li>Instalaciones eléctricas nuevas</li>
+        <li>Reparación y ampliación de circuitos</li>
+        <li>Tableros eléctricos y disyuntores</li>
+        <li>Iluminación LED y automatización</li>
+        <li>Bocas de corriente y tomas a tierra</li>
+        <li>Certificación y habilitación</li>
+      </ul>
+    </div>
+
+    <!-- INFORMÁTICA -->
+    <div class="service-card reveal">
+      <div class="service-icon">💻</div>
+      <h3>Informática y Reparación de Impresoras</h3>
+      <p>Soporte técnico completo para equipos de computación e impresoras, en tu domicilio o en nuestro taller.</p>
+      <ul class="service-list">
+        <li>Reparación de PC, notebook y laptop</li>
+        <li>Formateo, actualizaciones y antivirus</li>
+        <li>Redes Wi-Fi y cableado estructurado</li>
+        <li>Reparación y service de impresoras</li>
+        <li>Recarga y venta de cartuchos/tóners</li>
+        <li>Asesoramiento y compra de equipos</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section id="proceso">
+  <div class="reveal" style="text-align:center;max-width:600px;margin:0 auto;">
+    <span class="section-tag">Cómo trabajamos</span>
+    <h2 class="section-title">EL PROCESO</h2>
+    <p class="section-sub" style="margin:0 auto;">Simple, rápido y sin sorpresas.</p>
+  </div>
+  <div class="proceso-grid reveal" style="margin-top:3rem;">
+    <div class="proceso-step">
+      <div class="step-num">01</div>
+      <h4>Contacto</h4>
+      <p>Escribinos por WhatsApp o completá el formulario. Respondemos en menos de 2 horas.</p>
+    </div>
+    <div class="proceso-step">
+      <div class="step-num">02</div>
+      <h4>Visita técnica</h4>
+      <p>Uno de nuestros técnicos va hasta tu domicilio a evaluar el trabajo sin cargo.</p>
+    </div>
+    <div class="proceso-step">
+      <div class="step-num">03</div>
+      <h4>Presupuesto</h4>
+      <p>Te enviamos un presupuesto claro y detallado, sin letras chicas ni costos ocultos.</p>
+    </div>
+    <div class="proceso-step">
+      <div class="step-num">04</div>
+      <h4>Instalación</h4>
+      <p>Ejecutamos el trabajo de forma prolija, rápida y garantizada.</p>
+    </div>
+  </div>
+</section>
+
+<!-- POR QUÉ ELEGIRNOS -->
+<section id="porque">
+  <div class="reveal">
+    <span class="section-tag">Ventajas</span>
+    <h2 class="section-title">POR QUÉ ELEGIRNOS</h2>
+  </div>
+  <div class="porq-grid">
+    <div class="porq-items reveal">
+      <div class="porq-item">
+        <div class="porq-icon">🏆</div>
+        <div>
+          <h4>Experiencia comprobada</h4>
+          <p>Años de trayectoria en Río Cuarto y la región, con cientos de instalaciones exitosas.</p>
+        </div>
+      </div>
+      <div class="porq-item">
+        <div class="porq-icon">⚙️</div>
+        <div>
+          <h4>Equipos de calidad</h4>
+          <p>Trabajamos con marcas reconocidas y productos con garantía oficial del fabricante.</p>
+        </div>
+      </div>
+      <div class="porq-item">
+        <div class="porq-icon">📍</div>
+        <div>
+          <h4>Servicio local</h4>
+          <p>Somos de Río Cuarto. Llegamos rápido, te conocemos y nos importa tu satisfacción.</p>
+        </div>
+      </div>
+      <div class="porq-item">
+        <div class="porq-icon">🛡️</div>
+        <div>
+          <h4>Garantía en todos los trabajos</h4>
+          <p>Respaldamos cada instalación y reparación. Si hay un problema, lo solucionamos.</p>
+        </div>
+      </div>
+      <div class="porq-item">
+        <div class="porq-icon">💬</div>
+        <div>
+          <h4>Soporte posventa</h4>
+          <p>No desaparecemos después de la instalación. Estamos disponibles para consultas y seguimiento.</p>
+        </div>
+      </div>
+    </div>
+    <div class="porq-visual reveal">
+      <div style="margin-bottom:2rem;">
+        <div class="big-num">100%</div>
+        <p style="color:var(--gray);font-size:0.9rem;">de clientes satisfechos</p>
+      </div>
+      <div style="border-top:1px solid var(--card-border);padding-top:2rem;display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;text-align:left;">
+        <div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--cyan);">+5</div>
+          <div style="font-size:0.8rem;color:var(--gray);">años en el mercado</div>
+        </div>
+        <div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--cyan);">+200</div>
+          <div style="font-size:0.8rem;color:var(--gray);">proyectos realizados</div>
+        </div>
+        <div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--cyan);">3</div>
+          <div style="font-size:0.8rem;color:var(--gray);">servicios especializados</div>
+        </div>
+        <div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--cyan);">24h</div>
+          <div style="font-size:0.8rem;color:var(--gray);">tiempo de respuesta</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto" style="background:var(--navy2);">
+  <div class="reveal">
+    <span class="section-tag">Hablemos</span>
+    <h2 class="section-title">CONTACTO</h2>
+    <p class="section-sub">Pedí tu presupuesto sin compromiso. Respondemos rápido.</p>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-info reveal">
+      <div class="contact-item">
+        <div class="contact-item-icon">📱</div>
+        <div>
+          <strong>WhatsApp / Teléfono</strong>
+          <a href="https://wa.me/5493584000000" target="_blank">+54 9 358 400-0000</a>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">📧</div>
+        <div>
+          <strong>Email</strong>
+          <a href="mailto:info@stigroup.ar">info@stigroup.ar</a>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">📍</div>
+        <div>
+          <strong>Ubicación</strong>
+          <span style="color:var(--white);font-weight:500;">Río Cuarto, Córdoba, Argentina</span>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">🕐</div>
+        <div>
+          <strong>Horario de atención</strong>
+          <span style="color:var(--white);font-weight:500;">Lun – Sáb, 8:00 a 20:00</span>
+        </div>
+      </div>
+      <a href="https://wa.me/5493584000000?text=Hola!%20Quiero%20pedir%20un%20presupuesto%20para..." 
+         target="_blank" class="btn-primary" style="text-align:center;justify-content:center;margin-top:0.5rem;">
+        💬 Escribinos por WhatsApp
+      </a>
+    </div>
+
+    <form class="reveal" onsubmit="handleForm(event)">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+        <input type="text" placeholder="Nombre" required>
+        <input type="tel" placeholder="Teléfono">
+      </div>
+      <input type="email" placeholder="Email" required>
+      <select required>
+        <option value="" disabled selected>Servicio de interés</option>
+        <option>Alarmas y cámaras de seguridad</option>
+        <option>Electricidad domiciliaria</option>
+        <option>Informática / PC / Notebook</option>
+        <option>Reparación de impresoras</option>
+        <option>Redes Wi-Fi</option>
+        <option>Otro</option>
+      </select>
+      <textarea placeholder="Contanos qué necesitás..."></textarea>
+      <button type="submit" class="btn-form">Enviar consulta →</button>
+      <p id="form-msg" style="text-align:center;font-size:0.85rem;color:var(--cyan);display:none;">
+        ¡Gracias! Te contactamos pronto. 🎉
+      </p>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <a class="logo" href="#" style="font-size:1.5rem;"><span>STI</span> SOLUCIONES</a>
+    <p style="margin-top:0.5rem;">Río Cuarto, Córdoba · stigroup.ar</p>
+  </div>
+  <div class="footer-links">
+    <a href="#servicios">Servicios</a>
+    <a href="#contacto">Contacto</a>
+    <a href="mailto:info@stigroup.ar">info@stigroup.ar</a>
+  </div>
+  <p>© 2025 Sti Soluciones. Todos los derechos reservados.</p>
+</footer>
+
+<!-- WhatsApp flotante -->
+<a class="wa-float" href="https://wa.me/5493584000000?text=Hola!%20Quiero%20consultar%20sobre%20sus%20servicios." 
+   target="_blank" aria-label="WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/>
+    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.116 1.526 5.847L0 24l6.344-1.487A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.894a9.895 9.895 0 01-5.031-1.368l-.36-.214-3.737.979.999-3.645-.235-.374A9.861 9.861 0 012.106 12C2.106 6.534 6.534 2.106 12 2.106S21.894 6.534 21.894 12 17.466 21.894 12 21.894z"/>
+  </svg>
+</a>
+
+<script>
+function toggleMenu() {
+  document.getElementById('mobile-menu').classList.toggle('open');
+}
+
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+}, { threshold: 0.1 });
+reveals.forEach(el => io.observe(el));
+
+// Form handler
+function handleForm(e) {
+  e.preventDefault();
+  const msg = document.getElementById('form-msg');
+  msg.style.display = 'block';
+  e.target.reset();
+  setTimeout(() => { msg.style.display = 'none'; }, 5000);
+}
+</script>
+</body>
+</html>
